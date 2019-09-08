@@ -3,6 +3,6 @@ python:
   - "3.7"
 script: pytest
 deploy:
-  provide: heroku
+  provider: heroku
   api_key: 6d119b62-8c80-46c1-b021-b82dc30ca88e
   app: tps-dbservice
