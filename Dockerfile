@@ -15,5 +15,5 @@ RUN apk add --virtual .build-deps gcc python-dev musl-dev postgresql-dev
 #COPY .code/requirements.txt /requirements.txt
 #COPY ./api.py /api.py
 
-RUN pip install -r requirements.txt
+RUN pip install -r ../requirements.txt
 
