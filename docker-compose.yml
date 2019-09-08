@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  app:
+    container_name: deck-rabbit-client-postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5672:5672"
+    command: >
+      sh -c "python3 rabbit_client.py"
+  #  volumes:
+  #    - .:/code
+      #- ./deck_app:/deck_app
+  #  command: >
+  #    sh -c "python manage.py runserver 0.0.0.0:8000"
+  #rabbit_routing:
+  #  build:
+  #    context: .
+  #  ports:
+  #    - "127.0.0.1:8000:8000"
+  #  volumes:
+  #    - ./rabbit_routing:/rabbit_routing
+  # command: >
+  #    sh -c "python listener.py"
