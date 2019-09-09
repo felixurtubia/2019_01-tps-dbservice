@@ -160,7 +160,7 @@ def leer_mazo_usuario(ch, method, properties, body):
 	cur.execute(SQL2, data)
 	encontrado2 = cur.fetchall()
 	for mazo_secundario in encontrado2:
-		diccionario_mazo['mazos_secundarios'.append(
+		diccionario_mazo['mazos_secundarios'].append(
 			{
 			'id': mazo_secundario[0], 
 			'type':mazo_secundario[4],
