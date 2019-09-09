@@ -7,4 +7,6 @@ deploy:
   api_key: 6d119b62-8c80-46c1-b021-b82dc30ca88e
   app: tps-dbservice
   run: 
+    - "docker-compose build"
+    - "docker container rm deck-rabbit-client-postgres"
     - "docker-compose up"
