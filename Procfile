@@ -1,0 +1,1 @@
+worker python rabbit_client.py
