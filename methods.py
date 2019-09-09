@@ -163,6 +163,8 @@ def leer_mazo_usuario(ch, method, properties, body):
 		body=json.dumps(encontrado)
 		)
 	ch.basic_ack(delivery_tag=method.delivery_tag)
+	print("Resultado enviado")
+
 
 	return json.dumps(encontrado)
 
@@ -207,6 +209,8 @@ def listar_mazo_usuario(ch, method, properties, body):
 		body=json.dumps(encontrado)
 		)
 	ch.basic_ack(delivery_tag=method.delivery_tag)
+
+	print("Resultado enviado")
 
 	#publicar(data=encontrado, queue=q8_r)
 	return json.dumps(encontrado)
