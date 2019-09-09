@@ -148,25 +148,42 @@ def leer_mazo_usuario(ch, method, properties, body):
 	SQL = "SELECT * FROM userdeck WHERE id=%s;"
 	data = (parametros["id"],)
 	cur.execute(SQL, data)
-
 	encontrado = cur.fetchall()
+	diccionario_mazo = dict()
+	for mazo in encontrado:
+		diccionario_mazo['id'] = mazo[0]
+		diccionario_mazo['id usuario'] = mazo[1]
+		diccionario_mazo['nombre de mazo'] = mazo[2]
+		diccionario_mazo['mazos_secundarios'] = list()
+
+	SQL2 = "SELECT * FROM deck WHERE id_userdeck=%s;"
+	cur.execute(SQL2, data)
+	encontrado2 = cur.fetchall()
+	for mazo_secundario in encontrado2:
+		diccionario_mazo['mazos_secundarios'.append(
+			{
+			'id': mazo_secundario[0], 
+			'type':mazo_secundario[4],
+			'cardsCount':mazo_secundario[3],
+			'cardsmax':mazo_secundario[2], 
+			}
+			)
+
+
 	conn.commit()
 	cur.close()
 	conn.close()
-	print("Los datos del mazo son: {}".format(encontrado))
-
+	print("Los datos del mazo son: {}".format(diccionario_mazo))
 
 	ch.basic_publish(exchange='', 
 		routing_key=properties.reply_to, 
 		properties=pika.BasicProperties(
 			correlation_id = properties.correlation_id),
-		body=json.dumps(encontrado)
+		body=json.dumps(diccionario_mazo)
 		)
 	ch.basic_ack(delivery_tag=method.delivery_tag)
 	print("Resultado enviado")
-
-
-	return json.dumps(encontrado)
+	return json.dumps(diccionario_mazo)
 
 def remover_carta_mazo_secundario(ch, method, properties, body):
 	"""
