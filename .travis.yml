@@ -1,9 +1,25 @@
 language: python
 python:
   - "3.6"
-script: pytest
 services:
   - docker
+
+stages:
+  - unit test
+  - integration test
+#  - deploy
+
+jobs:
+  include:
+    - stage: unit test
+      script: pytest -k unit_test #Agregar modulo de pruebas unitarias
+    - stage: integration test
+      script: pytest -k integration_test #Agregar modulo de pruebas de integracion
+#    - stage: deploy
+#      script:
+#        - docker build felixurtubia/tps-dbservice-repository
+#        - docker push felixurtubia/tps-dbservice-repository
+
 deploy:
   provider: heroku
   api_key: 6d119b62-8c80-46c1-b021-b82dc30ca88e

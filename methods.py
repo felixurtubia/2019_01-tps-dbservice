@@ -231,3 +231,9 @@ def listar_mazo_usuario(ch, method, properties, body):
 
 	#publicar(data=encontrado, queue=q8_r)
 	return json.dumps(encontrado)
+
+
+def get_data(ch, method, properties, body):
+	parametros = json.loads(body)
+	print(parametros)
+	return json.dumps(parametros)

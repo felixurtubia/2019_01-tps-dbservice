@@ -45,6 +45,15 @@ q7_r='remover_carta_mazo_secundario_respuesta'
 q8 = 'listar_mazo_usuario'
 q8_r = 'listar_mazo_usuario_respuesta'
 
+q11 = 'ver_informacion_basica'
+q11_r = 'ver_informacion_basica_respuesta'
+q12 = 'ver_informacion_detallada'
+q12_r = 'ver_informacion_detallada_respuesta'
+q13 = 'busqueda_parcial'
+q13_r = 'busqueda_parcial_respuesta'
+q14 = 'busqueda_especifica' 
+q14_r = 'busqueda_especifica_respuesta'
+
 #Se crean las colas si no existen, caso contrario se comprueba su funcionamiento
 channel.queue_declare(queue=q1)
 channel.queue_declare(queue=q1_r)
@@ -63,6 +72,15 @@ channel.queue_declare(queue=q7_r)
 channel.queue_declare(queue=q8)
 channel.queue_declare(queue=q8_r)
 
+channel.queue_declare(queue=q11)
+channel.queue_declare(queue=q11_r)
+channel.queue_declare(queue=q12)
+channel.queue_declare(queue=q12_r)
+channel.queue_declare(queue=q13)
+channel.queue_declare(queue=q13_r)
+channel.queue_declare(queue=q14)
+channel.queue_declare(queue=q14_r)
+
 channel.basic_consume(queue=q1,on_message_callback=methods.crear_mazo,auto_ack=True)
 channel.basic_consume(queue=q2,on_message_callback=methods.crear_mazo_secundario,auto_ack=True)
 channel.basic_consume(queue=q3,on_message_callback=methods.agregar_carta_mazo_secundario,auto_ack=True)
@@ -71,6 +89,10 @@ channel.basic_consume(queue=q5,on_message_callback=methods.remover_mazo,auto_ack
 channel.basic_consume(queue=q6,on_message_callback=methods.leer_mazo_usuario)
 channel.basic_consume(queue=q7,on_message_callback=methods.remover_carta_mazo_secundario,auto_ack=True)
 channel.basic_consume(queue=q8,on_message_callback=methods.listar_mazo_usuario)
+channel.basic_consume(queue=q11,on_message_callback=methods.get_data)
+channel.basic_consume(queue=q12,on_message_callback=methods.get_data)
+channel.basic_consume(queue=q13,on_message_callback=methods.get_data)
+channel.basic_consume(queue=q14,on_message_callback=methods.get_data)
 
 
 """DATABASES = {
