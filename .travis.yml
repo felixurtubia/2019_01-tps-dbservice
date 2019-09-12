@@ -19,9 +19,11 @@ jobs:
 #      script:
 #        - docker build felixurtubia/tps-dbservice-repository
 #        - docker push felixurtubia/tps-dbservice-repository
+    - stage: deploy to heroku
+      script: skip
+      deploy:
+        provider: heroku
+        api_key: 6d119b62-8c80-46c1-b021-b82dc30ca88e
+        app: tps-dbservice
 
-deploy:
-  provider: heroku
-  api_key: 6d119b62-8c80-46c1-b021-b82dc30ca88e
-  app: tps-dbservice
 
